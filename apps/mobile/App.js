@@ -1,10 +1,12 @@
 // @flow
 
+import * as React from 'react';
 import {
   createAppContainer,
   type NavigationContainer,
   type NavigationState,
 } from 'react-navigation';
+import { SearchContext } from '@kiwicom/margarita-context';
 
 import TabNavigator from './src/navigation/TabNavigator';
 
@@ -17,4 +19,10 @@ const AppContainer: NavigationContainer<
   NavigationProps,
 > = createAppContainer(TabNavigator);
 
-export default AppContainer;
+export default function App() {
+  return (
+    <SearchContext.Provider>
+      <AppContainer />
+    </SearchContext.Provider>
+  );
+}

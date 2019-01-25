@@ -6,7 +6,7 @@ import {
   TripInput,
   TouchableWithoutFeedback,
 } from '@kiwicom/margarita-components';
-import { Icon, StyleSheet } from '@kiwicom/universal-components';
+import { Icon, StyleSheet, Text } from '@kiwicom/universal-components';
 import { defaultTokens } from '@kiwicom/orbit-design-tokens';
 
 type Props = {|
@@ -14,6 +14,8 @@ type Props = {|
   +travelTo: string,
   +handlePlacePress: () => void,
   +handlePlaceSwitchPress: () => void,
+  +count: number,
+  +increment: () => void,
 |};
 
 export default function Placepickers(props: Props) {
@@ -25,7 +27,8 @@ export default function Placepickers(props: Props) {
         icon={<Icon name="airplane-takeoff" />}
         value={props.travelFrom}
       />
-      <TouchableWithoutFeedback onPress={props.handlePlaceSwitchPress}>
+      <Text>{props.count}</Text>
+      <TouchableWithoutFeedback onPress={props.increment}>
         <View style={styles.placeSwitch}>
           <Icon name="replace" color="#7F91A8" />
         </View>

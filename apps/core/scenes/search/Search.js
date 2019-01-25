@@ -15,6 +15,7 @@ import {
   type Navigation,
 } from '@kiwicom/margarita-navigation';
 import * as DateFNS from 'date-fns';
+import { SearchContext } from '@kiwicom/margarita-context';
 
 import Placepickers from './Placepickers';
 import Datepickers from './Datepickers';
@@ -200,12 +201,18 @@ class Search extends React.Component<Props, State> {
                 bags={bags}
               />
             </View>
-            <Placepickers
-              travelFrom={travelFrom}
-              travelTo={travelTo}
-              handlePlacePress={this.handlePlacePress}
-              handlePlaceSwitchPress={this.handlePlaceSwitchPress}
-            />
+            <SearchContext.Consumer>
+              {({ count, increment }) => (
+                <Placepickers
+                  count={count}
+                  increment={increment}
+                  travelFrom={travelFrom}
+                  travelTo={travelTo}
+                  handlePlacePress={this.handlePlacePress}
+                  handlePlaceSwitchPress={this.handlePlaceSwitchPress}
+                />
+              )}
+            </SearchContext.Consumer>
             <Datepickers
               tripType={tripType}
               dateFrom={dateFrom}
