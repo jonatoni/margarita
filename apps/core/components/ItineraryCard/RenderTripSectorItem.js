@@ -25,6 +25,7 @@ function RenderTripSectorItem({ data }: Props) {
     </>
   );
 }
+export { RenderTripSectorItem as RenderTripSectorItemComponent };
 
 export default createFragmentContainer(
   RenderTripSectorItem,
