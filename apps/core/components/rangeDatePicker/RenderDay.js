@@ -11,10 +11,10 @@ import { margaritaTokens } from '@kiwicom/margarita-design-tokens';
 import RangeDateConfig from './RangeDateConfig';
 
 type Props = {|
-  day: Date,
-  onPress: Date => void,
-  price?: ?string,
-  selectedDate: Date,
+  +day: Date,
+  +onPress: Date => void,
+  +price?: ?string,
+  +selectedDate: Date,
 |};
 
 const DayPrice = ({ price }) => (
