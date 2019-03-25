@@ -15,6 +15,7 @@ export const margaritaTokens = {
   colorTextBadgeWarning: '#FFFFFF',
   colorTextBadgeWhite: '#7F91A8',
   borderColorCalendarItem: '#07405C',
+  backgroundDayItemEasingArrow: '#b3d6f2',
 
   fontSizeCalendarItem: 18,
 };

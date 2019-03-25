@@ -9,6 +9,7 @@ import { format, isSameDay, isBefore } from 'date-fns';
 import { margaritaTokens } from '@kiwicom/margarita-design-tokens';
 
 import RangeDateConfig from './RangeDateConfig';
+import DayItemArrow from './DayItemArrow';
 
 type Props = {|
   +day: Date,
@@ -40,27 +41,32 @@ export default function RenderDay({
 
   return (
     <TouchableWithoutFeedback onPress={handlePress} disabled={isDayInPast}>
-      <View
-        style={[
-          styles.dayContainer,
-          isDaySelected && styles.selectedDateContainer,
-        ]}
-      >
-        {day != null && (
-          <>
-            <Text
-              weight="bold"
-              style={[
-                styles.day,
-                isDaySelected && styles.selectedDateText,
-                isDayInPast && styles.dayInPast,
-              ]}
-            >
-              {format(day, 'd')}
-            </Text>
-            {price && <DayPrice price={price} />}
-          </>
-        )}
+      <View style={{ flex: 1 }}>
+        {isDaySelected && <DayItemArrow style={styles.leftArrow} />}
+
+        <View
+          style={[
+            styles.dayContainer,
+            isDaySelected && styles.selectedDateContainer,
+          ]}
+        >
+          {day != null && (
+            <>
+              <Text
+                weight="bold"
+                style={[
+                  styles.day,
+                  isDaySelected && styles.selectedDateText,
+                  isDayInPast && styles.dayInPast,
+                ]}
+              >
+                {format(day, 'd')}
+              </Text>
+              {price && <DayPrice price={price} />}
+            </>
+          )}
+        </View>
+        {isDaySelected && <DayItemArrow style={styles.rightArrow} />}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -68,7 +74,7 @@ export default function RenderDay({
 
 const styles = StyleSheet.create({
   dayContainer: {
-    width: RangeDateConfig.dayItemWidth,
+    flex: 1,
     minHeight: RangeDateConfig.dayItemHeight,
     alignItems: 'center',
     justifyContent: 'center',
@@ -92,5 +98,13 @@ const styles = StyleSheet.create({
   },
   dayInPast: {
     color: defaultTokens.colorTextSecondary,
+  },
+  leftArrow: {
+    start: 0,
+    top: 12,
+  },
+  rightArrow: {
+    end: 0,
+    top: 12,
   },
 });
