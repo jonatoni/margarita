@@ -3,6 +3,7 @@
 import { GraphQLNonNull } from 'graphql';
 import { connectionFromArray, connectionArgs } from '@kiwicom/graphql-utils';
 
+import { mapToOpaqueID } from '../helpers/Itineraries';
 import { type Args, ItinerariesConnection } from '../helpers/queryVariables';
 import ItinerariesOneWaySearchInput from '../types/inputs/ItinerariesOneWaySearchInput';
 import type { GraphqlContextType } from '../../../services/graphqlContext/GraphQLContext';
@@ -27,7 +28,9 @@ const ItinerariesOneWay = {
     args: Args<ItinerariesOneWaySearchParameters>,
     { dataLoader }: GraphqlContextType,
   ) => {
-    const itineraries = await dataLoader.itineraries_new.load(args.input);
+    const itineraries = await dataLoader.itineraries_new.load(
+      mapToOpaqueID(args.input),
+    );
 
     return connectionFromArray<Itinerary>(itineraries, args);
   },

@@ -16,7 +16,7 @@ type Passengers = {|
 |};
 
 type SearchLocation = {|
-  +ids: string[],
+  ids: string[],
 |};
 
 export type ItinerariesCommonSearchParameters = {|
@@ -32,7 +32,7 @@ export type ItinerariesOneWaySearchParameters = {|
   +sort?: Sort,
   +itinerary: {|
     +origin: SearchLocation,
-    +destination?: SearchLocation,
+    +destination: SearchLocation,
     +outboundDate: DateRange,
   |},
   +passengers?: Passengers,

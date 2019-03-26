@@ -4,6 +4,7 @@ import { GraphQLNonNull } from 'graphql';
 import { connectionFromArray, connectionArgs } from '@kiwicom/graphql-utils';
 
 import { type Args, ItinerariesConnection } from '../helpers/queryVariables';
+import { mapToOpaqueID } from '../helpers/Itineraries';
 import ItinerariesReturnSearchInput from '../types/inputs/ItinerariesReturnSearchInput';
 import type { GraphqlContextType } from '../../../services/graphqlContext/GraphQLContext';
 import type {
@@ -26,7 +27,9 @@ const ItinerariesReturn = {
     args: Args<ItinerariesReturnSearchParameters>,
     { dataLoader }: GraphqlContextType,
   ) => {
-    const itineraries = await dataLoader.itineraries_new.load(args.input);
+    const itineraries = await dataLoader.itineraries_new.load(
+      mapToOpaqueID(args.input),
+    );
 
     return connectionFromArray<Itinerary>(itineraries, args);
   },
